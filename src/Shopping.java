@@ -1,8 +1,9 @@
-/*
- * This class is the user interface class that handles the input commands, output data and messages.
- */
 import java.util.Scanner;
 
+/**
+ * This class is the user interface class that handles the input commands, output data and messages.
+ * @author Andrew Cater, Raymund Caringal
+ */
 public class Shopping {
 	public void run() {
 		//Initializing Variables for shopping. 
@@ -53,6 +54,10 @@ public class Shopping {
 		}
 	}
 
+	/**
+	 * Checks out all items within the shopping bag, emptying, listing, and summing all the items.
+	 * @param bag to be checked out and emptied
+	 */
 	private void checkout(ShoppingBag bag) {//Helper method to process checking out
 		int size = bag.getSize();
 		if(size > 0) {
@@ -65,6 +70,11 @@ public class Shopping {
 				
 		}
 	}
+
+	/**
+	 * Displays all items within the bag.
+	 * @param bag to be displayed
+	 */
 	private void printBag(ShoppingBag bag) {
 		int size = bag.getSize();
 		if(size > 0) {

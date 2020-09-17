@@ -16,6 +16,10 @@ for each method not tested. In the testbed main, you MUST print out the results 
 the test cases are passed.
 */
 
+/**
+ * A shopping bag to hold all grocery items. Contains all methods to add and remove items into/within the container.
+ * @author Andrew Cater, Raymund Caringal
+ */
 public class ShoppingBag {
 	private GroceryItem[] bag;
 	private int size;
@@ -33,13 +37,24 @@ public class ShoppingBag {
 		}
 		bag = temp;//Bag is set to the temp array
 	}
-	public void add(GroceryItem item) {//Adds Item to the bag
+
+	/**
+	 * Adds Item to the bag
+	 * @param item to be added
+	 */
+	public void add(GroceryItem item) {
 		if(size >= bag.length) {//Checks to see if the bag is currently full
 			grow();//If full call the grow function
 		}
 		bag[size] = item;//Adds item to the bag and increments size by 1
 		size++;
 	}
+
+	/**
+	 * Remove an item from the bag. Find the index of the item to be removed and move the last item in the array to replace the item using the index.
+	 * @param item to be removed
+	 * @return true if item was found, false otherwise
+	 */
 	public boolean remove(GroceryItem item) {
 		/*The remove() method calls the helper method find() and finds the index of the grocery item to be removed.
 		Move the last item in the array to replace the removing item with the index, and set the reference of the
@@ -53,7 +68,8 @@ public class ShoppingBag {
 	public double salesTax() {
 		return 0;//placeholder
 	}
-	public int getSize() {//Returns the valute of the private size Variable for use in RunProject1
+	//Returns the value of the private size Variable for use in RunProject1
+	public int getSize() {
 		return size;
 	}
 	public void print() {
