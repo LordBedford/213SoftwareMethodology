@@ -9,7 +9,7 @@ Things to remember:
 public class GroceryItem {
 	//default variables and methods copied from handout
 	private String name;
-	private double price;
+	private float price;
 	private boolean taxable;
 	public GroceryItem(String item, float cost, boolean isTaxable) {
 		name  = item;
@@ -22,6 +22,14 @@ public class GroceryItem {
 	}
 	public String toString() {
 		//Return Style should mimic: itemName: $xx.xx : tax free
-		return null;//placeholder
+		String ret = name;
+		ret  = ret.concat(": $" + price + " : ");
+		if(taxable) {
+			ret = ret.concat("is taxable");
+		}
+		else {
+			ret = ret.concat("tax free");
+		}
+		return ret;//placeholder
 	}
 }
