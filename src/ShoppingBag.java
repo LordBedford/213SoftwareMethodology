@@ -20,16 +20,25 @@ public class ShoppingBag {
 	private GroceryItem[] bag;
 	private int size;
 	public ShoppingBag() { 
-		
+		bag = new GroceryItem[5];
+		size = 0;
 	}
 	private int find(GroceryItem item) {
 		return 0;//placeholder
 	}
 	private void grow() {
-		
+		GroceryItem[] temp = new GroceryItem[(bag.length + 5)];//makes a new array that is 5 larger than bag
+		for(int i = 0; i <bag.length; i++){
+			temp[i] = bag[i];//Puts everything in bag in the temp array
+		}
+		bag = temp;//Bag is set to the temp array
 	}
-	public void add(GroceryItem item) {
-		
+	public void add(GroceryItem item) {//Adds Item to the bag
+		if(size >= bag.length) {//Checks to see if the bag is currently full
+			grow();//If full call the grow function
+		}
+		bag[size] = item;//Adds item to the bag and increments size by 1
+		size++;
 	}
 	public boolean remove(GroceryItem item) {
 		/*The remove() method calls the helper method find() and finds the index of the grocery item to be removed.
