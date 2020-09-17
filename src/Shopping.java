@@ -14,14 +14,22 @@ public class Shopping {
 		//Begin shopping run
 		System.out.println("Let's start shopping!");
 		while(shopping) {
-			//Scan in the command
+			//Scan in the item
 			command = scan.next().charAt(0);
+			String name;
 			//Process command
 			switch (command) {
-				case 'A' : bag.add(new GroceryItem(scan.next(), scan.nextFloat(), scan.nextBoolean())); //Adds Item to cart
+				case 'A' :{
+					name = scan.next();
+					bag.add(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));//Adds Item to cart
+					System.out.println(name + "  added to the bag");
+				}
 				break;
 				
-				case 'R' : bag.remove(new GroceryItem(scan.next(), scan.nextFloat(), scan.nextBoolean()));//Removes Item from cart
+				case 'R' :{ 
+					name = scan.next();
+					bag.remove(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));//Removes Item from cart
+				}
 				break;
 				
 				case 'P' : bag.print(); //Calls the print command in ShoppingBag
@@ -39,6 +47,7 @@ public class Shopping {
 				}
 				break;
 				default : System.out.println("Invalid Command!");
+							scan.nextLine();
 				break;	
 			}
 		}
