@@ -57,7 +57,9 @@ public class ShoppingBag {
 		return size;
 	}
 	public void print() {
-		
+		for(int i = 0; i < size; i++) {
+			System.out.println(bag[i].toString());
+		}
 	}
 }
 

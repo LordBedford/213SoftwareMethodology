@@ -32,7 +32,7 @@ public class Shopping {
 				}
 				break;
 				
-				case 'P' : bag.print(); //Calls the print command in ShoppingBag
+				case 'P' : printBag(bag);//Calls the print command in ShoppingBag
 				break;
 				
 				case 'C' :	checkout(bag);//Calls the private method checkout
@@ -62,6 +62,18 @@ public class Shopping {
 		}
 		else {
 			System.out.println("Unable to check out, the bag is empty!");
+				
+		}
+	}
+	private void printBag(ShoppingBag bag) {
+		int size = bag.getSize();
+		if(size > 0) {
+			System.out.println("You have " + size + " items in the bag.");
+			bag.print();
+			
+		}
+		else {
+			System.out.println("Bag is Empty!");
 				
 		}
 	}
