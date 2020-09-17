@@ -18,6 +18,10 @@ the test cases are passed.
 
 public class ShoppingBag {
 	private GroceryItem[] bag;
+	private int size;
+	public ShoppingBag() { 
+		
+	}
 	private int find(GroceryItem item) {
 		return 0;//placeholder
 	}
@@ -39,6 +43,9 @@ public class ShoppingBag {
 	}
 	public double salesTax() {
 		return 0;//placeholder
+	}
+	public int getSize() {
+		return size;
 	}
 	public void print() {
 		

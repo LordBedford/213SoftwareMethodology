@@ -11,6 +11,11 @@ public class GroceryItem {
 	private String name;
 	private double price;
 	private boolean taxable;
+	public GroceryItem(String item, float cost, boolean isTaxable) {
+		name  = item;
+		price = cost;
+		taxable = isTaxable;
+	}
 	public boolean equals(Object obj) {
 		//only returns true if all data fields are the same
 		return false;//placeholder
