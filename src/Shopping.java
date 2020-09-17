@@ -12,26 +12,25 @@ public class Shopping {
 		ShoppingBag bag = new ShoppingBag();
 		
 		//Begin shopping run
-		
-		System.out.println("Please Enter Commands for the Shopping cart");
+		System.out.println("Let's start shopping!");
 		while(shopping) {
 			//Scan in the command
 			command = scan.next().charAt(0);
 			//Process command
 			switch (command) {
-				case 'A' : bag.add(new GroceryItem(scan.next(), scan.nextFloat(), scan.nextBoolean())); 
+				case 'A' : bag.add(new GroceryItem(scan.next(), scan.nextFloat(), scan.nextBoolean())); //Adds Item to cart
 				break;
 				
-				case 'R' : bag.remove(new GroceryItem(scan.next(), scan.nextFloat(), scan.nextBoolean()));
+				case 'R' : bag.remove(new GroceryItem(scan.next(), scan.nextFloat(), scan.nextBoolean()));//Removes Item from cart
 				break;
 				
-				case 'P' : bag.print();
+				case 'P' : bag.print(); //Calls the print command in ShoppingBag
 				break;
 				
-				case 'C' :	checkout(bag);
+				case 'C' :	checkout(bag);//Calls the private method checkout
 				break;
 				
-				case 'Q' : { 
+				case 'Q' : { //Checks bag size, if not empty it calls the private method checkout
 						if(bag.getSize() >0) {
 							checkout(bag);
 						}
@@ -40,13 +39,12 @@ public class Shopping {
 				}
 				break;
 				default : System.out.println("Invalid Command!");
-				break;
-					
-				}
+				break;	
+			}
 		}
 	}
 
-	private void checkout(ShoppingBag bag) {
+	private void checkout(ShoppingBag bag) {//Helper method to process checking out
 		int size = bag.getSize();
 		if(size > 0) {
 			System.out.println("Checking out " + size + " items!");

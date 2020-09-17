@@ -44,7 +44,7 @@ public class ShoppingBag {
 	public double salesTax() {
 		return 0;//placeholder
 	}
-	public int getSize() {
+	public int getSize() {//Returns the valute of the private size Variable for use in RunProject1
 		return size;
 	}
 	public void print() {
