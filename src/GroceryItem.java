@@ -44,4 +44,16 @@ public class GroceryItem {
 		}
 		return ret;//placeholder
 	}
+	/**
+	 * Returns the price of the GroceryItem
+	 */
+	public float getCost() {
+		return price;
+	}
+	/**
+	 * Returns the boolean taxable
+	 */
+	public boolean getTaxable() {
+		return taxable;
+	}
 }

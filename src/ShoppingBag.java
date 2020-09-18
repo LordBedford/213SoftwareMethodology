@@ -84,13 +84,25 @@ public class ShoppingBag {
 		Move the last item in the array to replace the removing item with the index, and set the reference of the
 		last item to null.
 		*/
-		return false;//placeholder
+		return false;
 	}
-	public double salesPrice() {
-		return 0;//placeholder
+	public float salesPrice() {
+		float cost = 0;
+		for(int i = 0; i < size; i++) {
+			cost = cost + bag[i].getCost();
+		}
+		
+		return cost;
 	}
-	public double salesTax() {
-		return 0;//placeholder
+	public float salesTax() {
+		float cost = 0;
+		for(int i = 0; i < size; i++) {
+			if(bag[i].getTaxable()) {
+				cost = cost + bag[i].getCost();
+			}
+		}
+		cost = (float)(cost * 0.06625);
+		return (float)cost;
 	}
 	//Returns the value of the private size Variable for use in RunProject1
 	public int getSize() {
@@ -101,6 +113,12 @@ public class ShoppingBag {
 			System.out.println(bag[i].toString());
 		}
 		System.out.println("**End of list");
+	}
+	public void emptyBag() {
+		for(int i = 0; i < size; i++) {
+			bag[i] = null;
+		}
+		size = 0;
 	}
 }
 

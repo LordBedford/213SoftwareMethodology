@@ -62,7 +62,12 @@ public class Shopping {
 		if(size > 0) {
 			System.out.println("Checking out " + size + " items!");
 			bag.print();
-			
+			System.out.println("Sales Total: $" + bag.salesPrice());
+			System.out.printf("Sales tax: $"+"%.2f" , bag.salesTax());
+			System.out.println();
+			System.out.printf("Total Amount Paid: $"+("%.2f") , (bag.salesPrice() + bag.salesTax()));
+			System.out.println();
+			bag.emptyBag();
 		}
 		else {
 			System.out.println("Unable to check out, the bag is empty!");
