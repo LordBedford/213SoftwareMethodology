@@ -9,9 +9,8 @@ public class Shopping {
 		//Initializing Variables for shopping. 
 		boolean shopping = true;
 		char command = ' ';
-		Scanner scan  = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		ShoppingBag bag = new ShoppingBag();
-		
 		//Begin shopping run
 		System.out.println("Let's start shopping!");
 		while(shopping) {
@@ -23,7 +22,7 @@ public class Shopping {
 				case 'A' :{
 					name = scan.next();
 					bag.add(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));//Adds Item to cart
-					System.out.println(name + "  added to the bag");
+					System.out.println(name + " added to the bag");
 				}
 				break;
 				
@@ -40,7 +39,7 @@ public class Shopping {
 				break;
 				
 				case 'Q' : { //Checks bag size, if not empty it calls the private method checkout
-						if(bag.getSize() >0) {
+						if(bag.getSize() > 0) {
 							checkout(bag);
 						}
 						System.out.println("Have a great day!");

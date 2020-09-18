@@ -27,9 +27,23 @@ public class ShoppingBag {
 		bag = new GroceryItem[5];
 		size = 0;
 	}
+
+	/**
+	 * Finds the index of grocery item to be removed
+	 * @param item to be found
+	 * @return index of grocery item, otherwise -1
+	 */
 	private int find(GroceryItem item) {
-		return 0;//placeholder
+		for(int i = 0; i < size; i++){
+			if(item.equals(bag[i])){
+				return i;
+			}
+		}
+		return -1;
 	}
+
+
+	//Increase the bag size by 5
 	private void grow() {
 		GroceryItem[] temp = new GroceryItem[(bag.length + 5)];//makes a new array that is 5 larger than bag
 		for(int i = 0; i <bag.length; i++){
@@ -56,6 +70,16 @@ public class ShoppingBag {
 	 * @return true if item was found, false otherwise
 	 */
 	public boolean remove(GroceryItem item) {
+		int index = find(item);
+		if(index >= 0){
+			for(; index < size; index++){
+				bag[index] = bag[index+1];
+			}
+			bag[index] = null;
+			size--;
+		}else{
+			System.out.println("Unable to remove, this item is not in the bag.");
+		}
 		/*The remove() method calls the helper method find() and finds the index of the grocery item to be removed.
 		Move the last item in the array to replace the removing item with the index, and set the reference of the
 		last item to null.
@@ -76,6 +100,7 @@ public class ShoppingBag {
 		for(int i = 0; i < size; i++) {
 			System.out.println(bag[i].toString());
 		}
+		System.out.println("**End of list");
 	}
 }
 

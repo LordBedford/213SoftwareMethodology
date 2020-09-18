@@ -5,6 +5,8 @@ Things to remember:
 */
 
 
+import java.util.Objects;
+
 /**
  * An abstract data type to encapsulate the data fields and methods of a grocery item.
  * @author Andrew Cater, Raymund Caringal
@@ -21,8 +23,12 @@ public class GroceryItem {
 
 	@Override
 	public boolean equals(Object obj) {
-		//only returns true if all data fields are the same
-		return false;//placeholder
+		if(this == obj)
+			return true;
+		if(this == null || (!(obj instanceof GroceryItem)))
+			return false;
+		GroceryItem item = (GroceryItem) obj;
+		return Objects.equals(name, item.name) && Objects.equals(price, item.price) && Objects.equals(taxable, item.taxable);
 	}
 
 	@Override
