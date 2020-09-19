@@ -5,40 +5,39 @@ import java.util.Scanner;
  * @author Andrew Cater, Raymund Caringal
  */
 public class Shopping {
+	/**
+	 * Runs the shopping simulation
+	 */
 	public void run() {
-		//Initializing Variables for shopping. 
 		boolean shopping = true;
 		char command = ' ';
 		Scanner scan = new Scanner(System.in);
 		ShoppingBag bag = new ShoppingBag();
-		//Begin shopping run
 		System.out.println("Let's start shopping!");
 		while(shopping) {
-			//Scan in the item
 			command = scan.next().charAt(0);
 			String name;
-			//Process command
 			switch (command) {
 				case 'A' :{
 					name = scan.next();
-					bag.add(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));//Adds Item to cart
+					bag.add(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));
 					System.out.println(name + " added to the bag");
 				}
 				break;
 				
 				case 'R' :{ 
 					name = scan.next();
-					bag.remove(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));//Removes Item from cart
+					bag.remove(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));
 				}
 				break;
 				
-				case 'P' : printBag(bag);//Calls the print command in ShoppingBag
+				case 'P' : printBag(bag);
 				break;
 				
-				case 'C' :	checkout(bag);//Calls the private method checkout
+				case 'C' :	checkout(bag);
 				break;
 				
-				case 'Q' : { //Checks bag size, if not empty it calls the private method checkout
+				case 'Q' : {
 						if(bag.getSize() > 0) {
 							checkout(bag);
 						}
@@ -57,7 +56,7 @@ public class Shopping {
 	 * Checks out all items within the shopping bag, emptying, listing, and summing all the items.
 	 * @param bag to be checked out and emptied
 	 */
-	private void checkout(ShoppingBag bag) {//Helper method to process checking out
+	private void checkout(ShoppingBag bag) {
 		int size = bag.getSize();
 		if(size > 0) {
 			System.out.println("Checking out " + size + " items!");

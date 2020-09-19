@@ -1,10 +1,3 @@
-/*
-Things to remember: 
-1) No reading or printing to console in this class
-
-*/
-
-
 import java.util.Objects;
 
 /**
@@ -15,12 +8,24 @@ public class GroceryItem {
 	private String name;
 	private float price;
 	private boolean taxable;
+
+	/**
+	 * Generates Grocery Item Details
+	 * @param item the name
+	 * @param cost the price
+	 * @param isTaxable whether or not the item is taxable
+	 */
 	public GroceryItem(String item, float cost, boolean isTaxable) {
 		name  = item;
 		price = cost;
 		taxable = isTaxable;
 	}
 
+	/**
+	 * Checks for equality between obj and the current GroceryItem
+	 * @param obj the obj to be compared
+	 * @return true if the object is equal to the current GroceryItem, false otherwise
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj)
@@ -31,9 +36,12 @@ public class GroceryItem {
 		return Objects.equals(name, item.name) && Objects.equals(price, item.price) && Objects.equals(taxable, item.taxable);
 	}
 
+	/**
+	 * 	Grocery Item variables
+	 * @return itemName: $xx.xx : tax free
+	 */
 	@Override
 	public String toString() {
-		//Return Style should mimic: itemName: $xx.xx : tax free
 		String ret = name;
 		ret  = ret.concat(": $" + price + " : ");
 		if(taxable) {
@@ -42,7 +50,7 @@ public class GroceryItem {
 		else {
 			ret = ret.concat("tax free");
 		}
-		return ret;//placeholder
+		return ret;
 	}
 	/**
 	 * Returns the price of the GroceryItem
