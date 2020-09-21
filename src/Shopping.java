@@ -41,7 +41,7 @@ public class Shopping {
 						if(bag.getSize() > 0) {
 							checkout(bag);
 						}
-						System.out.println("Have a great day!");
+						System.out.println("Thanks for shopping with us!");
 						shopping = false;
 				}
 				break;
@@ -59,12 +59,13 @@ public class Shopping {
 	private void checkout(ShoppingBag bag) {
 		int size = bag.getSize();
 		if(size > 0) {
-			System.out.println("Checking out " + size + " items!");
+			System.out.println("**Checking out " + size + " items!");
 			bag.print();
-			System.out.println("Sales Total: $" + bag.salesPrice());
-			System.out.printf("Sales tax: $"+"%.2f" , bag.salesTax());
+			System.out.printf("*Sales Total: $"+"%.2f" , bag.salesPrice());
 			System.out.println();
-			System.out.printf("Total Amount Paid: $"+("%.2f") , (bag.salesPrice() + bag.salesTax()));
+			System.out.printf("*Sales tax: $"+"%.2f" , bag.salesTax());
+			System.out.println();
+			System.out.printf("*Total Amount Paid: $"+("%.2f") , (bag.salesPrice() + bag.salesTax()));
 			System.out.println();
 			bag.emptyBag();
 		}
@@ -81,12 +82,12 @@ public class Shopping {
 	private void printBag(ShoppingBag bag) {
 		int size = bag.getSize();
 		if(size > 0) {
-			System.out.println("You have " + size + " items in the bag.");
+			System.out.println("**You have " + size + " items in the bag.");
 			bag.print();
 			
 		}
 		else {
-			System.out.println("Bag is Empty!");
+			System.out.println("The bag is Empty!");
 				
 		}
 	}
