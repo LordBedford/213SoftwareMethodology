@@ -61,8 +61,7 @@ public class ShoppingBag {
 			}
 			bag[index] = null;
 			size--;
-		}else{//Just a heads up you can't use Println in Shopping bag outside of the print method. This needs be handled in Shopping.java
-			System.out.println("Unable to remove, this item is not in the bag.");
+			return true;
 		}
 		return false;
 	}

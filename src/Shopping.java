@@ -17,38 +17,46 @@ public class Shopping {
 		while(shopping) {
 			command = scan.next().charAt(0);
 			String name;
-			switch (command) {
-				case 'A' :{
-					name = scan.next();
-					bag.add(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));
-					System.out.println(name + " added to the bag");
-				}
-				break;
-				
-				case 'R' :{ 
-					name = scan.next();
-					bag.remove(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));
-				}
-				break;
-				
-				case 'P' : printBag(bag);
-				break;
-				
-				case 'C' :	checkout(bag);
-				break;
-				
-				case 'Q' : {
+			try{
+				switch (command) {
+					case 'A' :{
+						name = scan.next();
+						bag.add(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean()));
+						System.out.println(name + " added to the bag");
+					}
+					break;
+
+					case 'R' :{
+						name = scan.next();
+						if(!(bag.remove(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean())))){
+							System.out.println("Unable to remove, this item is not in the bag.");
+						}
+					}
+					break;
+
+					case 'P' : printBag(bag);
+						break;
+
+					case 'C' :	checkout(bag);
+						break;
+
+					case 'Q' : {
 						if(bag.getSize() > 0) {
 							checkout(bag);
 						}
 						System.out.println("Thanks for shopping with us!");
 						shopping = false;
+					}
+					break;
+					default : System.out.println("Invalid Command!");
+						scan.nextLine();
+						break;
 				}
-				break;
-				default : System.out.println("Invalid Command!");
-							scan.nextLine();
-				break;	
+			}catch (Exception e){
+				System.out.println("Invalid Command!");
+				scan.nextLine();
 			}
+
 		}
 	}
 
