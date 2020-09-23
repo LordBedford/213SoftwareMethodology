@@ -56,10 +56,8 @@ public class ShoppingBag {
 	public boolean remove(GroceryItem item) {
 		int index = find(item);
 		if(index >= 0){
-			for(; index < size; index++){
-				bag[index] = bag[index+1];
-			}
-			bag[index] = null;
+			bag[index] = bag[size-1];
+			bag[size-1] = null;
 			size--;
 			return true;
 		}

@@ -17,6 +17,7 @@ public class Shopping {
 		while(shopping) {
 			command = scan.next().charAt(0);
 			String name;
+			float price;
 			try{
 				switch (command) {
 					case 'A' :{
@@ -28,8 +29,12 @@ public class Shopping {
 
 					case 'R' :{
 						name = scan.next();
-						if(!(bag.remove(new GroceryItem(name, scan.nextFloat(), scan.nextBoolean())))){
+						price = scan.nextFloat();
+						if(!(bag.remove(new GroceryItem(name, price, scan.nextBoolean())))){
 							System.out.println("Unable to remove, this item is not in the bag.");
+						}
+						else {
+							System.out.println(name + ": $" + price + " removed.");
 						}
 					}
 					break;
