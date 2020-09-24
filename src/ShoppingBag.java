@@ -1,3 +1,7 @@
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+
 /**
  * A shopping bag to hold all grocery items. Contains all methods to add and remove items into/within the container.
  * @author Andrew Cater, Raymund Caringal
@@ -89,7 +93,7 @@ public class ShoppingBag {
 			}
 		}
 		cost = (float)(cost * 0.06625);
-		return (float)cost;
+		return cost;
 	}
 
 	/**
@@ -117,6 +121,74 @@ public class ShoppingBag {
 			bag[i] = null;
 		}
 		size = 0;
+	}
+
+	/**
+	 * The test bed
+	 */
+	public static void main(String[] args){
+		ShoppingBag temp = new ShoppingBag();
+		GroceryItem available = new GroceryItem("toast", 4, true);
+		GroceryItem missing = new GroceryItem("jam", 3 , false);
+		int size = temp.getSize();
+		if(size != 0){
+			System.out.println("Error: Method getSize() has failed");
+			return;
+		}
+		temp.add(available);
+		if(temp.getSize() == size){
+			System.out.println("Error: Method add() has failed");
+			return;
+
+		}
+		if(temp.find(missing) != -1 && temp.find(available) < 0){
+			System.out.println("Error: Method find() has failed");
+			return;
+		}
+		if (temp.salesPrice() != 4){
+			System.out.println("Error: Method salesPrice() has failed");
+			return;
+		}
+		if(temp.salesTax() != (float)(4*0.06625)){
+			System.out.println("Error: Method salesTax() has failed");
+			return;
+		}
+		ByteArrayOutputStream res = new ByteArrayOutputStream();
+		PrintStream output = new PrintStream(res);
+		PrintStream old = System.out;
+		System.setOut(output);
+		temp.print();
+		System.out.flush();
+		System.setOut(old);
+		String check = ".toast: $4.0 : is taxable\n" +
+						"**End of list";
+		if(res.toString().equals(check)){
+			System.out.println("Error: Method print() has failed");
+			return;
+		}
+
+		if(!temp.remove(available) || temp.remove(missing)){
+			System.out.println("Error: Method remove() has failed");
+			return;
+		}
+
+		//If grow doesn't work we get an ArrayIndexOutOfBoundsException
+		try{
+			for(int i = 0; i < 10; i++){
+				temp.add(available);
+			}
+		}catch (Exception e){
+			System.out.println("Error: Method grow() has failed");
+			return;
+		}
+
+		temp.emptyBag();
+		if(temp.getSize() != 0 || temp.find(available) != -1){
+			System.out.println("Error: Method emptyBag() has failed");
+			return;
+		}
+
+		System.out.println("**All tests have been passed");
 	}
 }
 
