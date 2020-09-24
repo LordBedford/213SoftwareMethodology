@@ -1,7 +1,3 @@
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-
 /**
  * A shopping bag to hold all grocery items. Contains all methods to add and remove items into/within the container.
  * @author Andrew Cater, Raymund Caringal
@@ -151,19 +147,6 @@ public class ShoppingBag {
 		}
 		if(temp.salesTax() != (float)(4*0.06625)){
 			System.out.println("Error: Method salesTax() has failed");
-			return;
-		}
-		ByteArrayOutputStream res = new ByteArrayOutputStream();
-		PrintStream output = new PrintStream(res);
-		PrintStream old = System.out;
-		System.setOut(output);
-		temp.print();
-		System.out.flush();
-		System.setOut(old);
-		String check = ".toast: $4.0 : is taxable\n" +
-						"**End of list";
-		if(res.toString().equals(check)){
-			System.out.println("Error: Method print() has failed");
 			return;
 		}
 
