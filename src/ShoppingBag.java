@@ -94,6 +94,7 @@ public class ShoppingBag {
 
 	/**
 	 * Returns the value of the private size Variable for use in RunProject1
+	 * @return bag size
 	 */
 	public int getSize() {
 		return size;
@@ -119,9 +120,6 @@ public class ShoppingBag {
 		size = 0;
 	}
 
-	/**
-	 * The test bed
-	 */
 	public static void main(String[] args){
 		ShoppingBag temp = new ShoppingBag();
 		GroceryItem available = new GroceryItem("toast", 4, true);
@@ -141,7 +139,9 @@ public class ShoppingBag {
 			System.out.println("Error: Method find() has failed");
 			return;
 		}
-		if (temp.salesPrice() != 4){
+
+		temp.add(new GroceryItem("toast", 4, false));
+		if (temp.salesPrice() != 8){
 			System.out.println("Error: Method salesPrice() has failed");
 			return;
 		}
@@ -155,15 +155,22 @@ public class ShoppingBag {
 			return;
 		}
 
+
 		//If grow doesn't work we get an ArrayIndexOutOfBoundsException
 		try{
-			for(int i = 0; i < 10; i++){
+			for(int i = 1; i < 10; i++){
 				temp.add(available);
 			}
 		}catch (Exception e){
 			System.out.println("Error: Method grow() has failed");
 			return;
 		}
+
+		if(temp.getSize() != 10){
+			System.out.println("Error: Method grow() has failed");
+			return;
+		}
+
 
 		temp.emptyBag();
 		if(temp.getSize() != 0 || temp.find(available) != -1){

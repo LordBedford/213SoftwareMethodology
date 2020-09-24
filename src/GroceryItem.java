@@ -54,12 +54,14 @@ public class GroceryItem {
 	}
 	/**
 	 * Returns the price of the GroceryItem
+	 * @return Item price
 	 */
 	public float getCost() {
 		return price;
 	}
 	/**
 	 * Returns the boolean taxable
+	 * @return If item is taxable
 	 */
 	public boolean getTaxable() {
 		return taxable;
