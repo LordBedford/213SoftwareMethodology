@@ -1,3 +1,4 @@
+package Project1;
 /**
  * A shopping bag to hold all grocery items. Contains all methods to add and remove items into/within the container.
  * @author Andrew Cater, Raymund Caringal
