@@ -6,7 +6,11 @@ public class Date implements Comparable<Date> {
 	private int year;
 	private int month;
 	private int day;
-	
+	public Date (int newDay, int newMonth, int newYear) {
+		day= newDay;
+		month = newMonth;
+		year = newYear;
+	}
 	public int compareTo(Date date) {
 		return 0;
 	}

@@ -5,14 +5,32 @@
 public class AccountDatabase {
 	private Account[] accounts;
 	private int size;
+	public AccountDatabase() {
+		size = 0;
+		accounts = new Account[5];
+	}
+	
 	private int find (Account account) {
 		return 0;
 	}
 	private void grow () {
-		
+		Account[] temp = new Account[accounts.length+5];
+		for(int i = 0; i < size; i++) {
+			temp[i] = accounts[i];
+		}
+		accounts = temp;
 	}
 	public boolean add (Account account) {
-		return false;
+		for(int i = 0; i < size; i++){
+			if(accounts[i].getClass().equals(account.getClass())) {//Not sure if this is allowed but I can change it if its not
+				return false;
+			}
+		}
+		if(size == accounts.length){
+			grow();
+		}
+		accounts[size] = account;
+		return true;
 	}
 	public boolean remove(Account account) { 
 		return false;

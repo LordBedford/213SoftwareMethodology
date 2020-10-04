@@ -17,4 +17,10 @@ public class MoneyMarket extends Account {
 		return 0;
 	}
 
+	@Override
+	public boolean compare(Account account) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
