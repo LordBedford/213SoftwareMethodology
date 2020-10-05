@@ -26,6 +26,11 @@ public class Checking extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later
+		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later, only compares names currently
+	}
+
+	@Override
+	public int classType() {
+		return 0;
 	}
 }

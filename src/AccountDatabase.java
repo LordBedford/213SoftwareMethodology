@@ -20,16 +20,24 @@ public class AccountDatabase {
 		}
 		accounts = temp;
 	}
+	/**
+	 * Adds an account to the accounts array if it does not already exist.
+	 * @param account
+	 * @return False if the account already exists in the array. True if it does not.
+	 */
 	public boolean add (Account account) {
 		for(int i = 0; i < size; i++){
-			if(accounts[i].getClass().equals(account.getClass())) {//Not sure if this is allowed but I can change it if its not
-				return false;
+			if(accounts[i].classType() == account.classType()) {//Checks to see if the accounts are of the same class
+				if(accounts[i].compare(account)) {//Runs the abstract compare method to see if the accounts are the same
+					return false;//If they are the same return false, otherwise continue
+				}
 			}
 		}
-		if(size == accounts.length){
+		if(size == accounts.length){//If the array is full, call grow to increase array size by 5.
 			grow();
 		}
 		accounts[size] = account;
+		size++;
 		return true;
 	}
 	public boolean remove(Account account) { 

@@ -19,6 +19,7 @@ public abstract class Account {
 	public abstract double monthlyInterest ();
 	public abstract double monthlyFee();
 	public abstract boolean compare(Account account);
+	public abstract int classType();
 	public double getBalance () {
 		return balance;
 	}

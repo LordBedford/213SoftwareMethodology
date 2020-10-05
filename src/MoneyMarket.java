@@ -23,4 +23,10 @@ public class MoneyMarket extends Account {
 		return false;
 	}
 
+	@Override
+	public int classType() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
+
 }
