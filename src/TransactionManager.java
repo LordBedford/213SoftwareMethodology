@@ -31,13 +31,26 @@ public class TransactionManager {
 								else {
 									System.out.println("Failure");
 								}
+								
 							}
 							break;
 							case 'S': {
+								if(accounts.add(new Savings(scan.next(),scan.next(),scan.nextDouble(),scan.nextInt(),scan.nextInt(),scan.nextInt(),scan.nextBoolean()))) {
+									System.out.println("Success!");
+								}
+								else {
+									System.out.println("Failure");
+								}
 								
 							}
 							break;
 							case 'M': {
+								if(accounts.add(new MoneyMarket(scan.next(),scan.next(),scan.nextDouble(),scan.nextInt(),scan.nextInt(),scan.nextInt()))) {
+									System.out.println("Success!");
+								}
+								else {
+									System.out.println("Failure");
+								}
 								
 							}
 							break;

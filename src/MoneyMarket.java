@@ -5,6 +5,13 @@
 public class MoneyMarket extends Account {
 	private int withdrawals;
 
+	public MoneyMarket (String fname, String lname, double initDeposit, int day, int month, int year) {
+		this.setProfile(fname, lname);
+		this.setDateOpen(day, month, year);
+		this.debit(initDeposit);
+		withdrawals = 0;
+	}
+	
 	@Override
 	public double monthlyInterest() {
 		// TODO Auto-generated method stub
@@ -19,8 +26,7 @@ public class MoneyMarket extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		// TODO Auto-generated method stub
-		return false;
+		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later, only compares names currently
 	}
 
 	@Override
