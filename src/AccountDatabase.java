@@ -54,9 +54,22 @@ public class AccountDatabase {
 		size++;
 		return true;
 	}
-	public boolean remove(Account account) { 
+
+	/**
+	 * Removes an account from the account database
+	 * @param account to be deleted
+	 * @return true if account removed, false otherwise
+	 */
+	public boolean remove(Account account) {
+		int index = find(account);
+		if(index >= 0){
+			accounts[index] = accounts[size-1];
+			accounts[size-1] = null;
+			size--;
+			return true;
+		}
 		return false;
-	} //return false if account doesn’t exist
+	}
 	public boolean deposit(Account account, double amount) {
 		return false;
 	}
