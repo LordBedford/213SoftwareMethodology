@@ -69,11 +69,39 @@ public class AccountDatabase {
 		}
 		return false;
 	}
+
+	/**
+	 * Depostis money to an account within the account database
+	 * @param account to deposit too
+	 * @param amount to be depsoited
+	 * @return true if account exists and amount is deposited, false is the account does not exist
+	 */
 	public boolean deposit(Account account, double amount) {
-		return false;
+		int index = find(account);
+		if(index< 0){
+			return  false;
+		}
+		double balance = accounts[index].getBalance();
+		accounts[index].setBalance(balance+amount);
+		return  true;
 	}
-	//return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
-	public int withdrawal(Account account, double amount) { 
+
+	/**
+	 * Withdraws money from an account within the account database
+	 * @param account to withdraw from
+	 * @param amount to be withdrawn
+	 * @return 0 if withdrawal is successful, 1 if there are insufficient funds, and -1 if account doesn’t exist
+	 */
+	public int withdrawal(Account account, double amount) {
+		int index = find(account);
+		if(index< 0){
+			return -1;
+		}
+		double balance = accounts[index].getBalance();
+		if(amount > balance){
+			return 1;
+		}
+		accounts[index].setBalance(balance-amount);
 		return 0;
 	}
 
