@@ -31,11 +31,11 @@ public class TransactionManager {
 					}
 					break;
 					case 'D': {
-						depositAccount(accounts,scan,command);
+						accountDirector(accounts,scan,command,'D');
 					}
 					break;
 					case 'W': {
-						
+						accountDirector(accounts,scan,command,'W');
 					}
 					break;
 					case 'P': {
@@ -166,17 +166,20 @@ public class TransactionManager {
 	}
 
 	/**
-	 * Helper method to deposit to the proper account
+	 * Helper method to deposit/withdraw to the proper account
 	 * @param accounts the account database
 	 * @param scan commandline scanner for user input
 	 * @param command the account type
+	 * @param type W if withdrawing, D if Depositing
 	 */
-	private void depositAccount(AccountDatabase accounts, Scanner scan, String command){
+	private void accountDirector(AccountDatabase accounts, Scanner scan, String command, char type){
 		char accountType = command.charAt(1);
 		String fname = scan.next();
 		String lname = scan.next();
 		double amount = scan.nextDouble();
 		Account account;
+
+		//Accounts here use dummy input as we're only looking for the name
 		switch (accountType) {
 			case 'C':{
 				account = new Checking(fname, lname, 0,1,1,2000, true);
@@ -195,10 +198,21 @@ public class TransactionManager {
 				return;
 			}
 		}
-		if(accounts.deposit(account, amount)){
-			System.out.println(amount + " deposited to account");
+		if(type == 'D'){
+			if(accounts.deposit(account, amount)){
+				System.out.println(amount + " deposited to account");
+			}else{
+				System.out.println("Account does not exist");
+			}
 		}else{
-			System.out.println("Account does not exist");
+			int status = accounts.withdrawal(account, amount);
+			if(status == 0){
+				System.out.println(amount + " deposited to account");
+			}else if(status == 1) {
+				System.out.println("Insufficient funds");
+			}else{
+				System.out.println("Account does not exist");
+			}
 		}
 	}
 
