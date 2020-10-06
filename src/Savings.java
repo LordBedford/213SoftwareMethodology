@@ -7,12 +7,10 @@ public class Savings extends Account {
 	private boolean isLoyal;
 	
 	public Savings(String fname, String lname, double initDeposit, int day, int month, int year, boolean loyal) {
-		this.setProfile(fname, lname);
-		this.setDateOpen(day, month, year);
-		this.debit(initDeposit);
+		super(fname, lname, initDeposit, day, month, year);
 		isLoyal = loyal;
 	}
-	
+
 	@Override
 	public double monthlyInterest() {
 		// TODO Auto-generated method stub

@@ -23,7 +23,7 @@ public class AccountDatabase {
 	/**
 	 * Adds an account to the accounts array if it does not already exist.
 	 * @param account
-	 * @return False if the account already exists in the array. True if it does not.
+	 * @return False if the account already exists in the array. True if it does not.gi
 	 */
 	public boolean add (Account account) {
 		for(int i = 0; i < size; i++){

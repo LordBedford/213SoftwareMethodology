@@ -6,10 +6,9 @@ public class MoneyMarket extends Account {
 	private int withdrawals;
 
 	public MoneyMarket (String fname, String lname, double initDeposit, int day, int month, int year) {
-		this.setProfile(fname, lname);
-		this.setDateOpen(day, month, year);
-		this.debit(initDeposit);
+		super(fname, lname, initDeposit, day, month, year);
 		withdrawals = 0;
+
 	}
 	
 	@Override
