@@ -37,4 +37,6 @@ public abstract class Account {
 		dateOpen = new Date(day,month,year);
 	}
 	 */
+
+	public Date getDateOpen() {return dateOpen;}
 }

@@ -9,10 +9,24 @@ public class AccountDatabase {
 		size = 0;
 		accounts = new Account[5];
 	}
-	
+
+	/**
+	 * Finds an account within the account database
+	 * @param account to be found
+	 * @return index of account, -1 if account not found
+	 */
 	private int find (Account account) {
-		return 0;
+		for(int i = 0; i < size; i++){
+			if(account.compare(accounts[i])){
+				return i;
+			}
+		}
+		return -1;
 	}
+
+	/**
+	 * Increases database size by 5
+	 */
 	private void grow () {
 		Account[] temp = new Account[accounts.length+5];
 		for(int i = 0; i < size; i++) {

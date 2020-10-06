@@ -25,7 +25,11 @@ public class MoneyMarket extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later, only compares names currently
+		if(account instanceof MoneyMarket){
+			MoneyMarket a = (MoneyMarket) account;
+			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.withdrawals == a.getWithdrawals();
+		}
+		return false;
 	}
 
 	@Override
@@ -34,4 +38,5 @@ public class MoneyMarket extends Account {
 		return 2;
 	}
 
+	public int getWithdrawals(){return withdrawals;}
 }

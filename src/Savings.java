@@ -25,7 +25,11 @@ public class Savings extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later, only compares names currently
+		if(account instanceof Savings){
+			Savings a = (Savings) account;
+			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.isLoyal == a.getIsLoyal();
+		}
+		return false;
 	}
 
 	@Override
@@ -33,5 +37,6 @@ public class Savings extends Account {
 		// TODO Auto-generated method stub
 		return 1;
 	}
+	public boolean getIsLoyal(){return isLoyal;}
 
 }
