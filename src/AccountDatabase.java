@@ -76,12 +76,38 @@ public class AccountDatabase {
 	public int withdrawal(Account account, double amount) { 
 		return 0;
 	}
+
+	/**
+	 * Uses Bubble Sort to sort all accounts in Account Database in Ascending Order by date
+	 */
 	private void sortByDateOpen() {
-		
-	} //sort in ascending order
+		for (int x = 0; x < size; x++) {
+			for (int y = x + 1; y < size; y++) {
+				Account tmp;
+				if (accounts[x].getDateOpen().compareTo(accounts[y].getDateOpen()) < 0) {
+					tmp = accounts[x];
+					accounts[x] = accounts[y];
+					accounts[y] = tmp;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Uses Bubble Sort to sort all accounts in Account Database in Ascending Order by Last Name
+	 */
 	private void sortByLastName() {
-		
-	} //sort in ascending order
+		for (int x = 0; x < size; x++) {
+			for (int y = x + 1; y < size; y++) {
+				Account tmp;
+				if (accounts[x].getProfile().getLname().compareTo(accounts[y].getProfile().getLname()) > 0) {
+					tmp = accounts[x];
+					accounts[x] = accounts[y];
+					accounts[y] = tmp;
+				}
+			}
+		}
+	}
 	public void printByDateOpen() { 
 		
 	}
