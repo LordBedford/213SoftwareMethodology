@@ -41,6 +41,19 @@ public class AccountDatabase {
 		return true;
 	}
 	public boolean remove(Account account) { 
+		for(int i = 0; i < size; i++){
+			if(accounts[i].classType() == account.classType()) {//Checks to see if the accounts are of the same class
+				if(accounts[i].compare(account)) {//Runs the abstract compare method to see if the accounts are the same
+					accounts[i] = null;
+					for(int j = i; i < size-1; i++) {//For loop shifts all accounts after the removed account to fill the new space.
+						accounts[i] = accounts[i+1];
+					}
+					accounts[size-1] = null;
+					size--;
+					return true;//If they are the same remove from the array and exit, otherwise continue
+				}
+			}
+		}
 		return false;
 	} //return false if account doesn’t exist
 	public boolean deposit(Account account, double amount) {
