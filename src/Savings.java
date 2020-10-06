@@ -27,7 +27,7 @@ public class Savings extends Account {
 	public boolean compare(Account account) {
 		if(account instanceof Savings){
 			Savings a = (Savings) account;
-			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.isLoyal == a.getIsLoyal();
+			return this.getProfile().compare(a.getProfile());
 		}
 		return false;
 	}

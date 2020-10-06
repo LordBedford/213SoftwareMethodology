@@ -31,7 +31,7 @@ public class TransactionManager {
 					}
 					break;
 					case 'D': {
-						
+						depositAccount(accounts,scan,command);
 					}
 					break;
 					case 'W': {
@@ -56,8 +56,8 @@ public class TransactionManager {
 	}
 	/**
 	 * Helper method or facilitate the creation of accounts after the char C is entered.
-	 * @param accounts: passes the accounts varible to allow for addition to it
-	 * @param scan: scan is passed to save reasourses so multiple scanners don't need to be made.
+	 * @param accounts: passes the accounts variable to allow for addition to it
+	 * @param scan: scan is passed to save resources so multiple scanners don't need to be made.
 	 * @param command: is passed for simplicity and is used to determine the type of account to create.
 	 */
 	private void createAccount(AccountDatabase accounts, Scanner scan, String command) {
@@ -127,41 +127,79 @@ public class TransactionManager {
 		int year = Integer.parseInt(dateSplit[2]);
 		String temp;
 		switch (accountType) {
-		case 'C':{
-			temp = scan.next();
-			if(accounts.remove(new Checking(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
-				System.out.println("Success!");
+			case 'C':{
+				temp = scan.next();
+				if(accounts.remove(new Checking(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
+					System.out.println("Success!");
+				}
+				else {
+					System.out.println("Failure");
+				}
+
 			}
-			else {
-				System.out.println("Failure");
+			break;
+			case 'S': {
+				temp = scan.next();
+				if(accounts.remove(new Savings(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
+					System.out.println("Success!");
+				}
+				else {
+					System.out.println("Failure");
+				}
+
 			}
-			
-		}
-		break;
-		case 'S': {
-			temp = scan.next();
-			if(accounts.remove(new Savings(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
-				System.out.println("Success!");
+			break;
+			case 'M': {
+				if(accounts.remove(new MoneyMarket(fname,lname,deposit,day,month,year))) {
+					System.out.println("Success!");
+				}
+				else {
+					System.out.println("Failure");
+				}
+
 			}
-			else {
-				System.out.println("Failure");
+			break;
+			default:{
+				System.out.println("Command '" + command +"' is not supported!");
 			}
-			
-		}
-		break;
-		case 'M': {
-			if(accounts.remove(new MoneyMarket(fname,lname,deposit,day,month,year))) {
-				System.out.println("Success!");
-			}
-			else {
-				System.out.println("Failure");
-			}
-			
-		}
-		break;
-		default:{
-			System.out.println("Command '" + command +"' is not supported!");
 		}
 	}
+
+	/**
+	 * Helper method to deposit to the proper account
+	 * @param accounts the account database
+	 * @param scan commandline scanner for user input
+	 * @param command the account type
+	 */
+	private void depositAccount(AccountDatabase accounts, Scanner scan, String command){
+		char accountType = command.charAt(1);
+		String fname = scan.next();
+		String lname = scan.next();
+		double amount = scan.nextDouble();
+		Account account;
+		switch (accountType) {
+			case 'C':{
+				account = new Checking(fname, lname, 0,1,1,2000, true);
+			}
+			break;
+			case 'S': {
+				account = new Savings(fname, lname, 0,1,1,2000, true);
+			}
+			break;
+			case 'M': {
+				account = new MoneyMarket(fname, lname, 0,1,1,2000);
+			}
+			break;
+			default:{
+				System.out.println("Command '" + command +"' is not supported!");
+				return;
+			}
+		}
+		if(accounts.deposit(account, amount)){
+			System.out.println(amount + " deposited to account");
+		}else{
+			System.out.println("Account does not exist");
+		}
 	}
+
 }

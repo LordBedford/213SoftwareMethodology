@@ -24,9 +24,9 @@ public class Checking extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		if(account instanceof  Checking){
+		if(account instanceof Checking){
 			Checking a = (Checking) account;
-			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.directdeposit == a.getDirectDeposit();
+			return this.getProfile().compare(a.getProfile());
 		}
 		return false;
 	}

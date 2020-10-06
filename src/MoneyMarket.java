@@ -27,7 +27,7 @@ public class MoneyMarket extends Account {
 	public boolean compare(Account account) {
 		if(account instanceof MoneyMarket){
 			MoneyMarket a = (MoneyMarket) account;
-			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.withdrawals == a.getWithdrawals();
+			return this.getProfile().compare(a.getProfile());
 		}
 		return false;
 	}
