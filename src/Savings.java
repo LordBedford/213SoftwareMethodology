@@ -7,12 +7,10 @@ public class Savings extends Account {
 	private boolean isLoyal;
 	
 	public Savings(String fname, String lname, double initDeposit, int day, int month, int year, boolean loyal) {
-		this.setProfile(fname, lname);
-		this.setDateOpen(day, month, year);
-		this.debit(initDeposit);
+		super(fname, lname, initDeposit, day, month, year);
 		isLoyal = loyal;
 	}
-	
+
 	@Override
 	public double monthlyInterest() {
 		// TODO Auto-generated method stub
@@ -27,7 +25,11 @@ public class Savings extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later, only compares names currently
+		if(account instanceof Savings){
+			Savings a = (Savings) account;
+			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.isLoyal == a.getIsLoyal();
+		}
+		return false;
 	}
 
 	@Override
@@ -35,5 +37,6 @@ public class Savings extends Account {
 		// TODO Auto-generated method stub
 		return 1;
 	}
+	public boolean getIsLoyal(){return isLoyal;}
 
 }

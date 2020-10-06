@@ -9,10 +9,24 @@ public class AccountDatabase {
 		size = 0;
 		accounts = new Account[5];
 	}
-	
+
+	/**
+	 * Finds an account within the account database
+	 * @param account to be found
+	 * @return index of account, -1 if account not found
+	 */
 	private int find (Account account) {
-		return 0;
+		for(int i = 0; i < size; i++){
+			if(account.compare(accounts[i])){
+				return i;
+			}
+		}
+		return -1;
 	}
+
+	/**
+	 * Increases database size by 5
+	 */
 	private void grow () {
 		Account[] temp = new Account[accounts.length+5];
 		for(int i = 0; i < size; i++) {
@@ -23,7 +37,7 @@ public class AccountDatabase {
 	/**
 	 * Adds an account to the accounts array if it does not already exist.
 	 * @param account
-	 * @return False if the account already exists in the array. True if it does not.
+	 * @return False if the account already exists in the array. True if it does not.gi
 	 */
 	public boolean add (Account account) {
 		for(int i = 0; i < size; i++){
@@ -40,22 +54,21 @@ public class AccountDatabase {
 		size++;
 		return true;
 	}
-	public boolean remove(Account account) { 
-		for(int i = 0; i < size; i++){
-			if(accounts[i].classType() == account.classType()) {//Checks to see if the accounts are of the same class
-				if(accounts[i].compare(account)) {//Runs the abstract compare method to see if the accounts are the same
-					accounts[i] = null;
-					for(int j = i; i < size-1; i++) {//For loop shifts all accounts after the removed account to fill the new space.
-						accounts[i] = accounts[i+1];
-					}
-					accounts[size-1] = null;
-					size--;
-					return true;//If they are the same remove from the array and exit, otherwise continue
-				}
-			}
+	/**
+	 * Removes an account from the account database
+	 * @param account to be deleted
+	 * @return true if account removed, false otherwise
+	 */
+	public boolean remove(Account account) {
+		int index = find(account);
+		if(index >= 0){
+			accounts[index] = accounts[size-1];
+			accounts[size-1] = null;
+			size--;
+			return true;
 		}
 		return false;
-	} //return false if account doesn’t exist
+	}
 	public boolean deposit(Account account, double amount) {
 		return false;
 	}

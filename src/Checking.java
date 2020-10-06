@@ -6,9 +6,7 @@ public class Checking extends Account {
 	private boolean directdeposit;
 	
 	public Checking(String fname, String lname, double initDeposit, int day, int month, int year, boolean isDirectdeposit) {
-		this.setProfile(fname, lname);
-		this.setDateOpen(day, month, year);
-		this.debit(initDeposit);
+		super(fname, lname, initDeposit, day, month, year);
 		directdeposit = isDirectdeposit;
 	}
 
@@ -26,11 +24,19 @@ public class Checking extends Account {
 
 	@Override
 	public boolean compare(Account account) {
-		return(this.getProfile().compare(account.getProfile()));//Not finished but I'll get to it later, only compares names currently
+		if(account instanceof  Checking){
+			Checking a = (Checking) account;
+			return this.getProfile().compare(a.getProfile()) && this.getBalance() == a.getBalance() && this.getDateOpen() == a.getDateOpen() && this.directdeposit == a.getDirectDeposit();
+		}
+		return false;
 	}
 
 	@Override
 	public int classType() {
 		return 0;
 	}
+
+	public boolean getDirectDeposit(){return directdeposit;}
+
 }
+
