@@ -13,14 +13,15 @@ public class Savings extends Account {
 
 	@Override
 	public double monthlyInterest() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(isLoyal) return this.getBalance()*1.0035;
+		return this.getBalance()*1.0025;
 	}
 
 	@Override
 	public double monthlyFee() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.getBalance() >= 300)return 0;
+		
+		return 5;
 	}
 
 	@Override
@@ -41,6 +42,7 @@ public class Savings extends Account {
 	
 	@Override
 	public String toString() {
+
 		if(isLoyal)return ("*Savings" + super.toString()+"special Savings account*");
 		return ("*Savings" + super.toString());
 	}

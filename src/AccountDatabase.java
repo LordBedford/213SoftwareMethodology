@@ -140,12 +140,28 @@ public class AccountDatabase {
 		sortByDateOpen();
 		for(int i = 0; i < size; i++) {
 			System.out.println(accounts[i].toString());
+			System.out.print("-intrest: $ ");
+			System.out.printf("%.2f",accounts[i].monthlyInterest());
+			System.out.print("\n-monthly fee: $ ");
+			System.out.printf("%.2f",accounts[i].monthlyFee());
+			accounts[i].setBalance(accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+			System.out.print("\n-new balance: $ ");
+			System.out.printf("%.2f",accounts[i].getBalance());
+			System.out.println("");
 		}
 	}
 	public void printByLastName() { 
 		sortByLastName();
 		for(int i = 0; i < size; i++) {
 			System.out.println(accounts[i].toString());
+			System.out.print("-intrest: $ ");
+			System.out.printf("%.2f",accounts[i].monthlyInterest());
+			System.out.print("\n-monthly fee: $ ");
+			System.out.printf("%.2f",accounts[i].monthlyFee());
+			accounts[i].setBalance(accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+			System.out.print("\n-new balance: $ ");
+			System.out.printf("%.2f",accounts[i].getBalance());
+			System.out.println("");
 		}
 	}
 	public void printAccounts() { 

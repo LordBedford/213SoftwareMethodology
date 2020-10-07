@@ -12,14 +12,14 @@ public class Checking extends Account {
 
 	@Override
 	public double monthlyInterest() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getBalance()*1.0005;
 	}
 
 	@Override
 	public double monthlyFee() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.getBalance() >= 1500 || directdeposit)return 0;
+		
+		return 25;
 	}
 
 	@Override

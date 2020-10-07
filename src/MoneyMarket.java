@@ -13,14 +13,14 @@ public class MoneyMarket extends Account {
 	
 	@Override
 	public double monthlyInterest() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return this.getBalance()*1.0065;
 	}
 
 	@Override
 	public double monthlyFee() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.getBalance() > 2500 && withdrawals <= 6) return 0;
+		return 12;
 	}
 
 	@Override
