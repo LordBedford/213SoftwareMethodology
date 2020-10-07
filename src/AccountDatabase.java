@@ -137,36 +137,49 @@ public class AccountDatabase {
 		}
 	}
 	public void printByDateOpen() {
-		sortByDateOpen();
-		for(int i = 0; i < size; i++) {
-			System.out.println(accounts[i].toString());
-			System.out.print("-intrest: $ ");
-			System.out.printf("%.2f",accounts[i].monthlyInterest());
-			System.out.print("\n-monthly fee: $ ");
-			System.out.printf("%.2f",accounts[i].monthlyFee());
-			accounts[i].setBalance(accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
-			System.out.print("\n-new balance: $ ");
-			System.out.printf("%.2f",accounts[i].getBalance());
-			System.out.println("");
+		if(size == 0){
+			System.out.println("Database is empty");
+		}else{
+			sortByDateOpen();
+			for(int i = 0; i < size; i++) {
+				System.out.println(accounts[i].toString());
+				System.out.print("-intrest: $ ");
+				System.out.printf("%.2f",accounts[i].monthlyInterest());
+				System.out.print("\n-monthly fee: $ ");
+				System.out.printf("%.2f",accounts[i].monthlyFee());
+				accounts[i].setBalance(accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+				System.out.print("\n-new balance: $ ");
+				System.out.printf("%.2f",accounts[i].getBalance());
+				System.out.println("");
+			}
 		}
 	}
-	public void printByLastName() { 
-		sortByLastName();
-		for(int i = 0; i < size; i++) {
-			System.out.println(accounts[i].toString());
-			System.out.print("-intrest: $ ");
-			System.out.printf("%.2f",accounts[i].monthlyInterest());
-			System.out.print("\n-monthly fee: $ ");
-			System.out.printf("%.2f",accounts[i].monthlyFee());
-			accounts[i].setBalance(accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
-			System.out.print("\n-new balance: $ ");
-			System.out.printf("%.2f",accounts[i].getBalance());
-			System.out.println("");
+	public void printByLastName() {
+		if(size == 0){
+			System.out.println("Database is empty");
+		}else{
+			sortByLastName();
+			for(int i = 0; i < size; i++) {
+				System.out.println(accounts[i].toString());
+				System.out.print("-intrest: $ ");
+				System.out.printf("%.2f",accounts[i].monthlyInterest());
+				System.out.print("\n-monthly fee: $ ");
+				System.out.printf("%.2f",accounts[i].monthlyFee());
+				accounts[i].setBalance(accounts[i].getBalance() + accounts[i].monthlyInterest() - accounts[i].monthlyFee());
+				System.out.print("\n-new balance: $ ");
+				System.out.printf("%.2f",accounts[i].getBalance());
+				System.out.println("");
+			}
 		}
+
 	}
-	public void printAccounts() { 
-		for(int i = 0; i < size; i++) {
-			System.out.println(accounts[i].toString());
+	public void printAccounts() {
+		if(size == 0){
+			System.out.println("Database is empty");
+		}else{
+			for(int i = 0; i < size; i++) {
+				System.out.println(accounts[i].toString());
+			}
 		}
 	}
 }

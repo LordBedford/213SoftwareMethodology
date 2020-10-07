@@ -52,7 +52,10 @@ public class TransactionManager {
 				}
 					
 			}
-			
+
+			//To clear Scanner if there's anything left over
+			if(scan.hasNext()){
+				scan.nextLine();}
 		}
 	}
 	/**
