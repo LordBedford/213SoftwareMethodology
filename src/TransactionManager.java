@@ -224,11 +224,11 @@ public class TransactionManager {
 			}
 			break;
 			case 'D': {
-				
+				accounts.printByDateOpen();
 			}
 			break;
 			case 'N':{
-				
+				accounts.printByLastName();
 			}
 			break;
 			default:{

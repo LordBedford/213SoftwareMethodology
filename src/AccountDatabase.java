@@ -136,11 +136,17 @@ public class AccountDatabase {
 			}
 		}
 	}
-	public void printByDateOpen() { 
-		
+	public void printByDateOpen() {
+		sortByDateOpen();
+		for(int i = 0; i < size; i++) {
+			System.out.println(accounts[i].toString());
+		}
 	}
 	public void printByLastName() { 
-		
+		sortByLastName();
+		for(int i = 0; i < size; i++) {
+			System.out.println(accounts[i].toString());
+		}
 	}
 	public void printAccounts() { 
 		for(int i = 0; i < size; i++) {
