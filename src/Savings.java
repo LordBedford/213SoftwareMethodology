@@ -38,5 +38,11 @@ public class Savings extends Account {
 		return 1;
 	}
 	public boolean getIsLoyal(){return isLoyal;}
+	
+	@Override
+	public String toString() {
+		if(isLoyal)return ("*Savings" + super.toString()+"special Savings account*");
+		return ("*Savings" + super.toString());
+	}
 
 }

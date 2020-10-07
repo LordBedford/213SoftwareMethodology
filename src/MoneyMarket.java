@@ -39,4 +39,9 @@ public class MoneyMarket extends Account {
 	}
 
 	public int getWithdrawals(){return withdrawals;}
+	
+	@Override
+	public String toString() {
+		return ("*Money Market" + super.toString()+withdrawals+" withdrawls*");
+	}
 }
