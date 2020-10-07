@@ -15,12 +15,13 @@ public class TransactionManager {
 		System.out.println("Transaction processing starts...");
 		while(running) {
 			command = scan.next();
-			if(command.length()  != 2) {
+			if(command.length()  > 2) {
 				System.out.println("Command '" + command +"' is not supported!");
 			}
 			else {
 				action = command.charAt(0);
-				accountType = command.charAt(1);
+				if(command.length() == 2)accountType = command.charAt(1);
+				
 				switch (action) {
 					case 'O':{
 						createAccount(accounts, scan, command);
@@ -39,7 +40,7 @@ public class TransactionManager {
 					}
 					break;
 					case 'P': {
-						
+						printHelper(accounts, scan,command);
 					}
 					break;
 					case 'Q': { System.out.println("Transaction processing completed.");
@@ -215,5 +216,24 @@ public class TransactionManager {
 			}
 		}
 	}
-
+	private void printHelper(AccountDatabase accounts, Scanner scan, String command) {
+		char type = command.charAt(1);
+		switch (type) {
+			case 'A': {
+				accounts.printAccounts();
+			}
+			break;
+			case 'D': {
+				
+			}
+			break;
+			case 'N':{
+				
+			}
+			break;
+			default:{
+				
+			}
+		}
+	}
 }

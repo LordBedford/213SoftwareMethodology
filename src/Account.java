@@ -18,7 +18,8 @@ public abstract class Account {
 	}
 	public void credit(double amount) { balance += amount;	}
 	public String toString() {
-		return null;
+		return( "*"+holder.getFname() + " " + holder.getLname() + "* $" + balance+"*"+dateOpen.toString()+"*");
+		
 	}
 	public abstract double monthlyInterest ();
 	public abstract double monthlyFee();

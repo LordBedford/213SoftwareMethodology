@@ -37,6 +37,12 @@ public class Checking extends Account {
 	}
 
 	public boolean getDirectDeposit(){return directdeposit;}
+	@Override
+	public String toString() {
+		if(directdeposit)return ("*Checking" + super.toString()+"direct deposit account*");
+		return ("*Checking" + super.toString());
+		
+	}
 
 }
 
