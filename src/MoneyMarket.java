@@ -14,7 +14,7 @@ public class MoneyMarket extends Account {
 	@Override
 	public double monthlyInterest() {
 
-		return this.getBalance()*1.0065;
+		return this.getBalance()*0.0065;
 	}
 
 	@Override
