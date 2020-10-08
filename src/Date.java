@@ -6,7 +6,7 @@ public class Date implements Comparable<Date> {
 	private int year;
 	private int month;
 	private int day;
-	public Date (int newDay, int newMonth, int newYear) {
+	public Date (int newMonth, int newDay, int newYear) {
 		day= newDay;
 		month = newMonth;
 		year = newYear;
@@ -49,8 +49,14 @@ public class Date implements Comparable<Date> {
 	 */
 	public boolean isValid() {
 		if( (month > 0 && month < 13) && (day > 0 && day < 31) && (year > 0 && year < 10000)){
+			if(month == 2 && day == 29) {
+				if(year%4 == 0)return true;
+				return false;
+			}
 			return  true;
 		}
+		else if(day == 31 && (month == 1||month == 3||month == 5||month == 7||month == 8||month == 10||month == 12)&& (year > 0 && year < 10000))return true;
+		
 		return false;
 	}
 

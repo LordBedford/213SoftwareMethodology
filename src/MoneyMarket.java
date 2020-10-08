@@ -44,4 +44,7 @@ public class MoneyMarket extends Account {
 	public String toString() {
 		return ("*Money Market" + super.toString()+withdrawals+" withdrawls*");
 	}
+	public void withdraw() {
+		withdrawals++;
+	}
 }

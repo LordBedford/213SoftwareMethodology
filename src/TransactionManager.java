@@ -9,7 +9,7 @@ public class TransactionManager {
 	public void run() {
 		AccountDatabase accounts = new AccountDatabase();
 		String command = "";
-		char action;
+		char action=' ';
 		char accountType;
 		Scanner scan = new Scanner(System.in);
 		boolean running = true;
@@ -57,8 +57,8 @@ public class TransactionManager {
 			}
 
 			//To clear Scanner if there's anything left over
-			if(scan.hasNext()){
-				scan.nextLine();}
+			//if(action != 'Q' && scan.hasNext()){
+				//scan.nextLine();}
 		}
 	}
 	/**
@@ -78,26 +78,39 @@ public class TransactionManager {
 		int month;
 		int year;
 		try {
-		accountType = command.charAt(1);
-		fname = scan.next();
-		lname = scan.next();
-		deposit = scan.nextDouble();
-		date = scan.next();
-		dateSplit  = date.split("/");
-		day = Integer.parseInt(dateSplit[0]);
-		month = Integer.parseInt(dateSplit[1]);
-		year = Integer.parseInt(dateSplit[2]);
+			accountType = command.charAt(1);
+			fname = scan.next();
+			lname = scan.next();
+			deposit = scan.nextDouble();
+			date = scan.next();
+			dateSplit  = date.split("/");
+			day = Integer.parseInt(dateSplit[0]);
+			month = Integer.parseInt(dateSplit[1]);
+			year = Integer.parseInt(dateSplit[2]);
 		}
 		catch(InputMismatchException e) {
-			System.out.println("Invalid Input!");
+			System.out.println("Input data type mismatch.");
 			scan.nextLine();
 			return;
 		}
-		String temp;
+		Date test = new Date(day,month,year);
+		if(!(test.isValid())) {
+			System.out.println(test.toString() + " is not a valid date!");
+			scan.nextLine();
+			return;
+		}
 		switch (accountType) {
 		case 'C':{
-			temp = scan.next();
-			if(accounts.add(new Checking(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
+			boolean temp = false;
+			try {
+				temp = scan.nextBoolean();
+			}
+			catch(InputMismatchException e){
+				System.out.println("Input data type mismatch.");
+				scan.nextLine();
+				return;
+			}
+			if(accounts.add(new Checking(fname,lname,deposit,day,month,year,temp))) {
 				System.out.println("Account opened and added to the database.");
 			}
 			else {
@@ -107,8 +120,16 @@ public class TransactionManager {
 		}
 		break;
 		case 'S': {
-			temp = scan.next();
-			if(accounts.add(new Savings(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
+			boolean temp = false;
+			try {
+				temp = scan.nextBoolean();
+			}
+			catch(InputMismatchException e){
+				System.out.println("Input data type mismatch.");
+				scan.nextLine();
+				return;
+			}
+			if(accounts.add(new Savings(fname,lname,deposit,day,month,year,temp))) {
 				System.out.println("Account opened and added to the database.");
 			}
 			else {
@@ -143,9 +164,6 @@ public class TransactionManager {
 		char accountType;
 		String fname;
 		String lname;
-		double deposit;
-		String date;
-		String[] dateSplit;
 		int day;
 		int month;
 		int year;
@@ -153,15 +171,9 @@ public class TransactionManager {
 			accountType = command.charAt(1);
 			fname = scan.next();
 			lname = scan.next();
-			deposit = scan.nextDouble();
-			date = scan.next();
-			dateSplit  = date.split("/");
-			day = Integer.parseInt(dateSplit[0]);
-			month = Integer.parseInt(dateSplit[1]);
-			year = Integer.parseInt(dateSplit[2]);
 		}
 		catch(InputMismatchException e) {
-			System.out.println("Invalid Input!");
+			System.out.println("Input data type mismatch.");
 			scan.nextLine();
 			return;
 		}
@@ -219,10 +231,10 @@ public class TransactionManager {
 		try {
 			fname = scan.next();
 			lname = scan.next();
-			
+			amount = scan.nextDouble();
 		}
 		catch (InputMismatchException e) {
-			System.out.println("Invalid Input!");
+			System.out.println("Input data type mismatch.");
 			scan.nextLine();
 			return;
 		}
@@ -256,7 +268,7 @@ public class TransactionManager {
 		}else{
 			int status = accounts.withdrawal(account, amount);
 			if(status == 0){
-				System.out.println(amount + " deposited to account");
+				System.out.println(amount + " withdrawn from account");
 			}else if(status == 1) {
 				System.out.println("Insufficient funds");
 			}else{

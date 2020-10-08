@@ -101,6 +101,11 @@ public class AccountDatabase {
 		if(amount > balance){
 			return 1;
 		}
+		if (accounts[index] instanceof MoneyMarket) {
+			MoneyMarket temp = (MoneyMarket) accounts[index];
+			temp.withdraw();
+			accounts[index] = temp;
+		}
 		accounts[index].setBalance(balance-amount);
 		return 0;
 	}
@@ -112,7 +117,7 @@ public class AccountDatabase {
 		for (int x = 0; x < size; x++) {
 			for (int y = x + 1; y < size; y++) {
 				Account tmp;
-				if (accounts[x].getDateOpen().compareTo(accounts[y].getDateOpen()) < 0) {
+				if (accounts[x].getDateOpen().compareTo(accounts[y].getDateOpen()) > 0) {
 					tmp = accounts[x];
 					accounts[x] = accounts[y];
 					accounts[y] = tmp;
@@ -141,8 +146,9 @@ public class AccountDatabase {
 			System.out.println("Database is empty");
 		}else{
 			sortByDateOpen();
+			System.out.println("\n--Printing statements by date opened--\n");
 			for(int i = 0; i < size; i++) {
-				System.out.println(accounts[i].toString());
+				System.out.println("\n"+accounts[i].toString());
 				System.out.print("-intrest: $ ");
 				System.out.printf("%.2f",accounts[i].monthlyInterest());
 				System.out.print("\n-monthly fee: $ ");
@@ -152,6 +158,7 @@ public class AccountDatabase {
 				System.out.printf("%.2f",accounts[i].getBalance());
 				System.out.println("");
 			}
+			System.out.println("--end of printing--\n");
 		}
 	}
 	public void printByLastName() {
@@ -159,8 +166,9 @@ public class AccountDatabase {
 			System.out.println("Database is empty");
 		}else{
 			sortByLastName();
+			System.out.println("\n--Printing statements by last name--");
 			for(int i = 0; i < size; i++) {
-				System.out.println(accounts[i].toString());
+				System.out.println("\n"+accounts[i].toString());
 				System.out.print("-intrest: $ ");
 				System.out.printf("%.2f",accounts[i].monthlyInterest());
 				System.out.print("\n-monthly fee: $ ");
@@ -170,6 +178,7 @@ public class AccountDatabase {
 				System.out.printf("%.2f",accounts[i].getBalance());
 				System.out.println("");
 			}
+			System.out.println("--end of printing--");
 		}
 
 	}
@@ -177,9 +186,11 @@ public class AccountDatabase {
 		if(size == 0){
 			System.out.println("Database is empty");
 		}else{
+			System.out.println("--Listing Accounts in the database--");
 			for(int i = 0; i < size; i++) {
 				System.out.println(accounts[i].toString());
 			}
+			System.out.println("--end of listing--");
 		}
 	}
 }

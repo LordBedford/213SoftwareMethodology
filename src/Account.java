@@ -2,6 +2,7 @@
  * This is an abstract class that defines the common features of all account types.
  * @author Andrew Cater, Raymund Caringal
  */
+import java.text.DecimalFormat;
 public abstract class Account {
 	private Profile holder;
 	private double balance;
@@ -18,7 +19,9 @@ public abstract class Account {
 	}
 	public void credit(double amount) { balance += amount;	}
 	public String toString() {
-		return( "*"+holder.getFname() + " " + holder.getLname() + "* $" + balance+"*"+dateOpen.toString()+"*");
+		DecimalFormat df = new DecimalFormat("0.00");
+		
+		return( "*"+holder.getFname() + " " + holder.getLname() + "* $" + df.format(balance) +"*"+dateOpen.toString()+"*");
 		
 	}
 	public abstract double monthlyInterest ();
