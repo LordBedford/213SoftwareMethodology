@@ -6,6 +6,13 @@ public class Date implements Comparable<Date> {
 	private int year;
 	private int month;
 	private int day;
+
+	/**
+	 * Generates a Date Object
+	 * @param newDay the day
+	 * @param newMonth the month
+	 * @param newYear the year
+	 */
 	public Date (int newMonth, int newDay, int newYear) {
 		day= newDay;
 		month = newMonth;
@@ -60,8 +67,22 @@ public class Date implements Comparable<Date> {
 		return false;
 	}
 
+	/**
+	 * Gets the current year
+	 * @return the current year
+	 */
 	public int getYear() {return year;}
+
+	/**
+	 * Gets the current month
+	 * @return the current month
+	 */
 	public int getMonth() {return month;}
+
+	/**
+	 * Gets the current day
+	 * @return the current day
+	 */
 	public int getDay() {return day;}
 
 }

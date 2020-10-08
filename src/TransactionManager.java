@@ -1,11 +1,14 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
 /**
  * This is the user interface class that handles the transactions and displays the
  * results on the console.
  * @author Andrew Cater, Raymund Caringal
  */
-import java.util.InputMismatchException;
-import java.util.Scanner;
 public class TransactionManager {
+	/**
+	 * Runs the Transaction Manager
+	 */
 	public void run() {
 		AccountDatabase accounts = new AccountDatabase();
 		String command = "";
@@ -55,10 +58,6 @@ public class TransactionManager {
 				}
 					
 			}
-
-			//To clear Scanner if there's anything left over
-			//if(action != 'Q' && scan.hasNext()){
-				//scan.nextLine();}
 		}
 	}
 	/**
