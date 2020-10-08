@@ -79,10 +79,10 @@ public class TransactionManager {
 		case 'C':{
 			temp = scan.next();
 			if(accounts.add(new Checking(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
-				System.out.println("Success!");
+				System.out.println("Account opened and added to the database.");
 			}
 			else {
-				System.out.println("Failure");
+				System.out.println("Account is already in the database.");
 			}
 			
 		}
@@ -90,20 +90,20 @@ public class TransactionManager {
 		case 'S': {
 			temp = scan.next();
 			if(accounts.add(new Savings(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
-				System.out.println("Success!");
+				System.out.println("Account opened and added to the database.");
 			}
 			else {
-				System.out.println("Failure");
+				System.out.println("Account is already in the database.");
 			}
 			
 		}
 		break;
 		case 'M': {
 			if(accounts.add(new MoneyMarket(fname,lname,deposit,day,month,year))) {
-				System.out.println("Success!");
+				System.out.println("Account opened and added to the database.");
 			}
 			else {
-				System.out.println("Failure");
+				System.out.println("Account is already in the database.");
 			}
 			
 		}
@@ -123,42 +123,32 @@ public class TransactionManager {
 		char accountType = command.charAt(1);
 		String fname = scan.next();
 		String lname = scan.next();
-		double deposit = scan.nextDouble();
-		String date = scan.next();
-		String[] dateSplit  = date.split("/");
-		int day = Integer.parseInt(dateSplit[0]);
-		int month = Integer.parseInt(dateSplit[1]);
-		int year = Integer.parseInt(dateSplit[2]);
-		String temp;
 		switch (accountType) {
 			case 'C':{
-				temp = scan.next();
-				if(accounts.remove(new Checking(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
-					System.out.println("Success!");
+				if(accounts.remove(new Checking(fname, lname, 0,1,1,2000, true))) {
+					System.out.println("Account closed and removed from the database.");
 				}
 				else {
-					System.out.println("Failure");
+					System.out.println("Account does not exist.");
 				}
-
 			}
 			break;
 			case 'S': {
-				temp = scan.next();
-				if(accounts.remove(new Savings(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
-					System.out.println("Success!");
+				if(accounts.remove(new Savings(fname, lname, 0,1,1,2000, true))) {
+					System.out.println("Account closed and removed from the database..");
 				}
 				else {
-					System.out.println("Failure");
+					System.out.println("Account does not exist.");
 				}
 
 			}
 			break;
 			case 'M': {
-				if(accounts.remove(new MoneyMarket(fname,lname,deposit,day,month,year))) {
-					System.out.println("Success!");
+				if(accounts.remove(new MoneyMarket(fname, lname, 0,1,1,2000))){
+					System.out.println("Account closed and removed from the database.");
 				}
 				else {
-					System.out.println("Failure");
+					System.out.println("Account does not exist.");
 				}
 
 			}
