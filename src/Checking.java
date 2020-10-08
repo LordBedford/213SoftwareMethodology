@@ -12,7 +12,7 @@ public class Checking extends Account {
 
 	@Override
 	public double monthlyInterest() {
-		return this.getBalance()*1.0005;
+		return this.getBalance()*0.0005;
 	}
 
 	@Override

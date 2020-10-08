@@ -3,12 +3,13 @@
  * results on the console.
  * @author Andrew Cater, Raymund Caringal
  */
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class TransactionManager {
 	public void run() {
 		AccountDatabase accounts = new AccountDatabase();
 		String command = "";
-		char action;
+		char action=' ';
 		char accountType;
 		Scanner scan = new Scanner(System.in);
 		boolean running = true;
@@ -17,6 +18,7 @@ public class TransactionManager {
 			command = scan.next();
 			if(command.length()  > 2) {
 				System.out.println("Command '" + command +"' is not supported!");
+				scan.nextLine();
 			}
 			else {
 				action = command.charAt(0);
@@ -48,14 +50,15 @@ public class TransactionManager {
 					}
 					break;
 					default : { System.out.println("Command '" + command +"' is not supported!");
+					scan.nextLine();
 					}
 				}
 					
 			}
 
 			//To clear Scanner if there's anything left over
-			if(scan.hasNext()){
-				scan.nextLine();}
+			//if(action != 'Q' && scan.hasNext()){
+				//scan.nextLine();}
 		}
 	}
 	/**
@@ -65,20 +68,49 @@ public class TransactionManager {
 	 * @param command: is passed for simplicity and is used to determine the type of account to create.
 	 */
 	private void createAccount(AccountDatabase accounts, Scanner scan, String command) {
-		char accountType = command.charAt(1);
-		String fname = scan.next();
-		String lname = scan.next();
-		double deposit = scan.nextDouble();
-		String date = scan.next();
-		String[] dateSplit  = date.split("/");
-		int day = Integer.parseInt(dateSplit[0]);
-		int month = Integer.parseInt(dateSplit[1]);
-		int year = Integer.parseInt(dateSplit[2]);
-		String temp;
+		char accountType;
+		String fname;
+		String lname;
+		double deposit;
+		String date;
+		String[] dateSplit;
+		int day;
+		int month;
+		int year;
+		try {
+			accountType = command.charAt(1);
+			fname = scan.next();
+			lname = scan.next();
+			deposit = scan.nextDouble();
+			date = scan.next();
+			dateSplit  = date.split("/");
+			day = Integer.parseInt(dateSplit[0]);
+			month = Integer.parseInt(dateSplit[1]);
+			year = Integer.parseInt(dateSplit[2]);
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Input data type mismatch.");
+			scan.nextLine();
+			return;
+		}
+		Date test = new Date(day,month,year);
+		if(!(test.isValid())) {
+			System.out.println(test.toString() + " is not a valid date!");
+			scan.nextLine();
+			return;
+		}
 		switch (accountType) {
 		case 'C':{
-			temp = scan.next();
-			if(accounts.add(new Checking(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
+			boolean temp = false;
+			try {
+				temp = scan.nextBoolean();
+			}
+			catch(InputMismatchException e){
+				System.out.println("Input data type mismatch.");
+				scan.nextLine();
+				return;
+			}
+			if(accounts.add(new Checking(fname,lname,deposit,day,month,year,temp))) {
 				System.out.println("Account opened and added to the database.");
 			}
 			else {
@@ -88,8 +120,16 @@ public class TransactionManager {
 		}
 		break;
 		case 'S': {
-			temp = scan.next();
-			if(accounts.add(new Savings(fname,lname,deposit,day,month,year,Boolean.parseBoolean(temp)))) {
+			boolean temp = false;
+			try {
+				temp = scan.nextBoolean();
+			}
+			catch(InputMismatchException e){
+				System.out.println("Input data type mismatch.");
+				scan.nextLine();
+				return;
+			}
+			if(accounts.add(new Savings(fname,lname,deposit,day,month,year,temp))) {
 				System.out.println("Account opened and added to the database.");
 			}
 			else {
@@ -110,6 +150,7 @@ public class TransactionManager {
 		break;
 		default:{
 			System.out.println("Command '" + command +"' is not supported!");
+			scan.nextLine();
 		}
 	}
 	}
@@ -120,9 +161,23 @@ public class TransactionManager {
 	 * @param command: is passed for simplicity and is used to determine the type of account to create.
 	 */
 	private void closeAccount(AccountDatabase accounts, Scanner scan, String command) {
-		char accountType = command.charAt(1);
-		String fname = scan.next();
-		String lname = scan.next();
+		char accountType;
+		String fname;
+		String lname;
+		int day;
+		int month;
+		int year;
+		try {
+			accountType = command.charAt(1);
+			fname = scan.next();
+			lname = scan.next();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Input data type mismatch.");
+			scan.nextLine();
+			return;
+		}
+		String temp;
 		switch (accountType) {
 			case 'C':{
 				if(accounts.remove(new Checking(fname, lname, 0,1,1,2000, true))) {
@@ -155,6 +210,7 @@ public class TransactionManager {
 			break;
 			default:{
 				System.out.println("Command '" + command +"' is not supported!");
+				scan.nextLine();
 			}
 		}
 	}
@@ -168,10 +224,20 @@ public class TransactionManager {
 	 */
 	private void accountDirector(AccountDatabase accounts, Scanner scan, String command, char type){
 		char accountType = command.charAt(1);
-		String fname = scan.next();
-		String lname = scan.next();
-		double amount = scan.nextDouble();
+		String fname="";
+		String lname="";
+		double amount=0;
 		Account account;
+		try {
+			fname = scan.next();
+			lname = scan.next();
+			amount = scan.nextDouble();
+		}
+		catch (InputMismatchException e) {
+			System.out.println("Input data type mismatch.");
+			scan.nextLine();
+			return;
+		}
 
 		//Accounts here use dummy input as we're only looking for the name
 		switch (accountType) {
@@ -189,6 +255,7 @@ public class TransactionManager {
 			break;
 			default:{
 				System.out.println("Command '" + command +"' is not supported!");
+				scan.nextLine();
 				return;
 			}
 		}
@@ -201,7 +268,7 @@ public class TransactionManager {
 		}else{
 			int status = accounts.withdrawal(account, amount);
 			if(status == 0){
-				System.out.println(amount + " deposited to account");
+				System.out.println(amount + " withdrawn from account");
 			}else if(status == 1) {
 				System.out.println("Insufficient funds");
 			}else{
