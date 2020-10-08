@@ -5,6 +5,10 @@
 public class AccountDatabase {
 	private Account[] accounts;
 	private int size;
+
+	/**
+	 * Default Account Database size of 5
+	 */
 	public AccountDatabase() {
 		size = 0;
 		accounts = new Account[5];
@@ -36,7 +40,7 @@ public class AccountDatabase {
 	}
 	/**
 	 * Adds an account to the accounts array if it does not already exist.
-	 * @param account
+	 * @param account to be added
 	 * @return False if the account already exists in the array. True if it does not.gi
 	 */
 	public boolean add (Account account) {
@@ -81,8 +85,7 @@ public class AccountDatabase {
 		if(index< 0){
 			return  false;
 		}
-		double balance = accounts[index].getBalance();
-		accounts[index].setBalance(balance+amount);
+		accounts[index].credit(amount);
 		return  true;
 	}
 
@@ -106,7 +109,7 @@ public class AccountDatabase {
 			temp.withdraw();
 			accounts[index] = temp;
 		}
-		accounts[index].setBalance(balance-amount);
+		accounts[index].debit(amount);
 		return 0;
 	}
 
@@ -141,6 +144,10 @@ public class AccountDatabase {
 			}
 		}
 	}
+
+	/**
+	 * Print all accounts within the database in ascending order by date opened
+	 */
 	public void printByDateOpen() {
 		if(size == 0){
 			System.out.println("Database is empty");
@@ -161,6 +168,10 @@ public class AccountDatabase {
 			System.out.println("--end of printing--\n");
 		}
 	}
+
+	/**
+	 * Print all accounts within the database in ascending order by last name
+	 */
 	public void printByLastName() {
 		if(size == 0){
 			System.out.println("Database is empty");
@@ -182,6 +193,10 @@ public class AccountDatabase {
 		}
 
 	}
+
+	/**
+	 * Print all accounts
+	 */
 	public void printAccounts() {
 		if(size == 0){
 			System.out.println("Database is empty");
