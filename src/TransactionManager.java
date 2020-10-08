@@ -209,6 +209,13 @@ public class TransactionManager {
 			}
 		}
 	}
+
+	/**
+	 * Helper method to print using the proper sorting method
+	 * @param accounts database
+	 * @param scan commandline scanner for input
+	 * @param command A for Accounts, D for by Date, and L for by Last Name
+	 */
 	private void printHelper(AccountDatabase accounts, Scanner scan, String command) {
 		char type = command.charAt(1);
 		switch (type) {

@@ -28,16 +28,10 @@ public abstract class Account {
 	public double getBalance () {
 		return balance;
 	}
-	/*public void setProfile(String fname, String lname) {
-		holder = new Profile(fname, lname);
-	}*/
+
 	public Profile getProfile () {
 		return holder;
 	}
-	/*public void setDateOpen (int day, int month, int year) {
-		dateOpen = new Date(day,month,year);
-	}
-	 */
 
 	public Date getDateOpen() {return dateOpen;}
 
