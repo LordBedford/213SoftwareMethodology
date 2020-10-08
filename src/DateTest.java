@@ -8,25 +8,38 @@ import org.junit.jupiter.api.Test;
 
 class DateTest {
 
+	private static Date date;
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	
+	/**
+	 * Initializes date as a new Date object
+	 */
+	static void setUpBeforeClass(){
+		date = new Date(1,1,2010);
 	}
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
+	/**
+	 * Tests the isValid function of date
+	 */
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testisValid() {
+		assertTrue(date.isValid());//Date is valid
+		date = new Date(1,1,-777);
+		assertFalse(date.isValid());//Negative years are always invalid
+		date = new Date(1,41,2010);
+		assertFalse(date.isValid());//Years over 10000 are always invalid
+		date = new Date(1,1,20100);
+		assertFalse(date.isValid());//Day numbers over 31 are always invalid
+		date = new Date(21,1,2010);
+		assertFalse(date.isValid());//Months over 12 are always invalid
+		date = new Date(2,31,2010);
+		assertFalse(date.isValid());//Day number over total possible for said month is invalid
+		date = new Date(1,31,2010);
+		assertTrue(date.isValid());//Date is valid
+		date = new Date(2,29,2010);
+		assertFalse(date.isValid());//Febuary can only have 29 days on a leap year
+		date = new Date(2,29,2012);
+		assertTrue(date.isValid());//Date is valid
 	}
 
 }
